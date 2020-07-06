@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'devise'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

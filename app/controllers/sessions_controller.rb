@@ -1,9 +1,14 @@
 class SessionsController < ApplicationController
+    def new
+    end
+    
     def create
-      @user = User.find_or_create_by(uid: auth['uid']) do |u|
+        session[:name] = params[:name]
+        @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.email = auth['info']['email']
         u.image = auth['info']['image']
+        
       end
    
       session[:user_id] = @user.id
@@ -16,4 +21,10 @@ class SessionsController < ApplicationController
     def auth
       request.env['omniauth.auth']
     end
+
+    def destroy
+        session.delete :name
+        redirect_to "/login"
+     end
+
   end
