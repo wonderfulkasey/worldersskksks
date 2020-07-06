@@ -1,0 +1,28 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h3>
+      <%= @user.errors.count %> user
+      <%= 'error'.pluralize(@user.errors.count) %>
+       prohibited your information from being saved:
+    </h3>
+
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li>* <%= message %></li>
+      <% end %>
+    </ul>
+
+    <div>
+  <h2>Sign up</h2>
+</div>
+
+<%= form_for @user do |f| %>
+  <%= render 'form', f:f, user: @user, addresses: @addresses %>
+  <div class='actions'>
+    <%= f.submit 'Sign up', class: "btn btn-primary" %><br />
+  </div>
+<% end %>
+
+<br /><%= link_to 'Register with Facebook', '/auth/facebook' %><br />
+
+<br /><%= link_to 'Log in', login_path %>
