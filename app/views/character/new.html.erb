@@ -1,0 +1,17 @@
+<% if @errors && !@errors.empty? %>
+    <% @errors.each do |e| %>
+        <p><%= e %></p>
+    <% end %>
+<% end %>
+
+
+<h1>Let's Create a New Character </h1>
+
+<h2> Character: </h2>
+<%= form_for @characters do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<% end %>
+<%= f.submit %>
+    <% end %>
