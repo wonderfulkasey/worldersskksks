@@ -1,0 +1,9 @@
+<div class="center jumnotron">
+  <h1>Welcome <%= (current_user.name).titleize if current_user %></h1>
+</div>
+
+<h2>Worlds</h2>
+
+<ul class="worlds">
+  <%= render @worlds %>
+</ul>
