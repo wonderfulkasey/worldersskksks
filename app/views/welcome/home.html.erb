@@ -1,4 +1,12 @@
+<div class="center jumbotron">
+  <h1>Welcome <%= (current_user.name).titleize if current_user %></h1>
+</div>
 
+<h2>Worlds</h2>
+
+<ul class="worlds">
+  <%= render @worlds %>
+</ul>
 <%# Add the Facebook login link here %>
 <% if session[:user_id] %>
   <h1><%= @user.name %></h1>
