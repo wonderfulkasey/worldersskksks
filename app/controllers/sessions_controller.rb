@@ -3,17 +3,13 @@ class SessionsController < ApplicationController
     end
     
     def create
-        session[:name] = params[:name]
-        @user = User.find_or_create_by(uid: auth['uid']) do |u|
-        u.name = auth['info']['name']
-        u.email = auth['info']['email']
-        u.image = auth['info']['image']
-        
-      end
-   
-      session[:user_id] = @user.id
-   
-      render 'welcome/home'
+        user = User.find_by(name: params[:name])
+        if user && user.authenticate(params[:password])
+          session[:user_id] = user.id
+          redirect_to root_path
+        else
+          redirect_to login_path, {alert: "Your Username or Password was invalid"}
+        end
     end
    
     private
@@ -23,7 +19,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        session.delete :name
+        session.delete :user_id
         redirect_to "/login"
      end
 
